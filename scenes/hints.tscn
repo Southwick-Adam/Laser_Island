@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://kenpixel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/white.png" type="Texture" id=2]
+[ext_resource path="res://scripts/hints.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+extra_spacing_char = 1
+font_data = ExtResource( 1 )
+
+[node name="hints" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.2, 0.623529, 0.768627, 0.627451 )
+position = Vector2( 74.3256, 48.17 )
+scale = Vector2( 5.64535, 4.01062 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -4.0
+margin_top = -2.0
+margin_right = 156.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+text = "Uh oh! that laser can't be good"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

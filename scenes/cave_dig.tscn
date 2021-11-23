@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/cave_dig.gd" type="Script" id=1]
+[ext_resource path="res://assets/x.png" type="Texture" id=2]
+[ext_resource path="res://scripts/item.gd" type="Script" id=3]
+[ext_resource path="res://assets/cave.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18.4624, 16.8259 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "burn"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticBody2D/Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.94902, 0.0431373, 0.0431373, 1 ), Color( 0.113725, 0.113725, 0.113725, 1 ), Color( 0.113725, 0.113725, 0.113725, 1 ), Color( 0.113725, 0.113725, 0.113725, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 12.2295, 13.1035 )
+
+[node name="cave_dig" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=[
+"item",
+]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="StaticBody2D"]
+visible = false
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -0.0865669, 12.7254 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/burn = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"target",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 4 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StaticBody2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Chunky Explosion.mp3-83552ac074244f208b63a1223b5f229e.mp3str"
+
+[deps]
+
+source_file="res://audio/Chunky Explosion.mp3"
+dest_files=[ "res://.import/Chunky Explosion.mp3-83552ac074244f208b63a1223b5f229e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

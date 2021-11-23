@@ -1,0 +1,41 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "burn (copy)"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticBody2D/Sprite/sprite/sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.94902, 0.0431373, 0.0431373, 1 ), Color( 0.113725, 0.113725, 0.113725, 1 ), Color( 0.113725, 0.113725, 0.113725, 1 ), Color( 0.113725, 0.113725, 0.113725, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StaticBody2D/Sprite/sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.607843, 0.54902, 0.8, 1 ), Color( 0.74902, 0.0392157, 0.0392157, 1 ), Color( 0.0509804, 0.0509804, 0.0509804, 1 ), Color( 0.0509804, 0.0509804, 0.0509804, 1 ), Color( 0.0509804, 0.0509804, 0.0509804, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StaticBody2D/Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.541176, 0.486275, 0.721569, 1 ), Color( 0.741176, 0.00392157, 0.00392157, 1 ), Color( 0.054902, 0.054902, 0.054902, 1 ), Color( 0.054902, 0.054902, 0.054902, 1 ), Color( 0.054902, 0.054902, 0.054902, 0 ) ]
+}
