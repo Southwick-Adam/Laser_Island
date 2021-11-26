@@ -19,7 +19,12 @@ func _process(_delta):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == ("go"):
+		$AnimationPlayer2.play("boom")
 		$AudioStreamPlayer2D.play()
 		var node = Bomb.instance()
 		get_node("/root/main").call_deferred("add_child", node)
 		node.global_position = $Position2D.global_position
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

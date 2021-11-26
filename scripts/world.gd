@@ -12,6 +12,7 @@ var time = 0
 var takeable = true
 
 func _ready():
+	set_process(false)
 	if not StoredData.sound:
 		AudioServer.set_bus_mute(1,1)
 	if not StoredData.music:
@@ -29,6 +30,13 @@ func _ready():
 		area.position = $shadow.map_to_world(tile) + Vector2(-10,16)
 		shade[area] = tile
 	$check2.queue_free()
+
+func _start():
+	set_process(true)
+	$Timer.start()
+	$AudioStreamPlayer.play()
+	$clock/beam/Sprite/AudioStreamPlayer2D.play()
+	$clock/beam/Sprite/AudioStreamPlayer2D2.play()
 
 func _process(delta):
 	$clock.rotate(PI/30 * delta)

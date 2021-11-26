@@ -12,7 +12,7 @@
 extents = Vector2( 8.89362, 11.1357 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 26.8568
+radius = 37.8585
 
 [node name="player" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,6 +37,8 @@ position = Vector2( -0.916901, 10.2021 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="body"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
 shape = SubResource( 2 )

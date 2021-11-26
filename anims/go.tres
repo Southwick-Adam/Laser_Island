@@ -76,14 +76,14 @@ tracks/5/keys = {
 "values": [ 0.0, 90.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("StaticBody2D/Sprite/sprite/Sprite:position")
+tracks/6/path = NodePath("StaticBody2D/Sprite/sprite/sprite:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.624084, 0.403844 ), Vector2( -3.30121, 0.0470047 ) ]
+"values": [ Vector2( 1.25, 1.25 ) ]
 }

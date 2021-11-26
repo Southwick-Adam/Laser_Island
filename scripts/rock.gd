@@ -17,3 +17,7 @@ func _act():
 		takeable = false
 		get_node("/root/main/grass2").queue_free()
 		get_node("/root/main/grass").visible = true
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

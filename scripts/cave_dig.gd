@@ -13,8 +13,8 @@ var activated = false
 func _activate():
 	if takeable:
 		$StaticBody2D/Sprite.visible = true
-		$StaticBody2D.collision_layer = 1
-		$StaticBody2D.collision_mask = 1
+		$StaticBody2D.collision_layer = 2
+		$StaticBody2D.collision_mask = 2
 		activated = true
 
 func _act():
@@ -23,6 +23,8 @@ func _act():
 	if player.inventory[player.ia] == "shovel" and phase == 0:
 		$StaticBody2D/Sprite.visible = false
 		$StaticBody2D/Sprite2.visible = true
+		$StaticBody2D.collision_layer = 1
+		$StaticBody2D.collision_mask = 1
 		phase += 1
 		hints._write("looks like there's a cave under here. Dark though...")
 	elif player.inventory[player.ia] == "light" and phase == 1:
@@ -34,3 +36,7 @@ func _act():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "burn":
 		activated = true
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

@@ -10,3 +10,7 @@ func _act():
 	player._pickup(item, image)
 	$StaticBody2D/Sprite.visible = false
 	takeable = false
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

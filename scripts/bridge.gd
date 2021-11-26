@@ -37,3 +37,7 @@ func _on_AnimationPlayer_animation_started(anim):
 		var map = get_node("/root/main/world/TileMap")
 		map.set_cell(3,7,16)
 		map.set_cell(6,7,15)
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

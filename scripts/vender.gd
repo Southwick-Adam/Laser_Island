@@ -14,3 +14,7 @@ func _act():
 		hints._write("This vending machine sells flashlights?")
 	else:
 		hints._write("No money, no vending")
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

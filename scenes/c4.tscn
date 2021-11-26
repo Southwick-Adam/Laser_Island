@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/grass.png" type="Texture" id=1]
 [ext_resource path="res://assets/c4.png" type="Texture" id=2]
@@ -44,6 +44,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 11.1339, 17.2178 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 40, 40 )
+
 [node name="c4" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -56,6 +59,7 @@ script = ExtResource( 3 )
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 0.278431 )
 position = Vector2( -0.112448, 8.59308 )
 scale = Vector2( 0.404945, 0.0905785 )
+z_index = -1
 texture = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
@@ -65,6 +69,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( -2.18597, -5.74999 )
 shape = SubResource( 1 )
 
@@ -81,7 +86,16 @@ anims/dead = SubResource( 3 )
 position = Vector2( -0.692539, -20.6031 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2( -0.138374, 6.36527 )
 shape = SubResource( 4 )
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="." groups=[
+"touch",
+]]
+position = Vector2( -0.432839, -5.88659 )
+shape = SubResource( 5 )
+shape_centered = false
+
 [connection signal="animation_finished" from="AnimationPlayer" to="StaticBody2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

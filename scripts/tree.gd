@@ -17,3 +17,7 @@ func _act():
 		$StaticBody2D/CollisionShape2D.position.y = 37
 		$StaticBody2D/CollisionShape2D.shape.extents.y = 23
 		$Area2D.position.y = 25
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

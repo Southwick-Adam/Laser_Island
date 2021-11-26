@@ -14,26 +14,50 @@ var dig_sites = 2
 
 onready var UI = get_node("/root/main/UI/UI")
 onready var hints = get_node("/root/main/UI/hints")
+onready var knob = get_node("/root/main/knob")
+
+var touch = false
+
+func _ready():
+	set_process(false)
+	set_process_input(false)
+
+func _start():
+	if StoredData.method == "key":
+		set_process_input(true)
+	set_process(true)
 
 func _animate(anim):
 	if $AnimationPlayer.current_animation != anim:
 		$AnimationPlayer.play(anim)
 
 func _process(_delta):
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = lerp(velocity.y, -SPEED, ACCELERATION)
-	elif Input.is_action_pressed("ui_down"):
-		velocity.y = lerp(velocity.y, SPEED, ACCELERATION)
-	else:
-		velocity.y = lerp(velocity.y, 0, ACCELERATION)
-	if Input.is_action_pressed("ui_left"):
-		$body/Sprite.scale.x = -scal
-		velocity.x = lerp(velocity.x, -SPEED, ACCELERATION)
-	elif Input.is_action_pressed("ui_right"):
-		$body/Sprite.scale.x = scal
-		velocity.x = lerp(velocity.x, SPEED, ACCELERATION)
-	else:
-		velocity.x = lerp(velocity.x, 0, ACCELERATION)
+	if StoredData.method == "key":
+		if Input.is_action_pressed("ui_up"):
+			velocity.y = lerp(velocity.y, -SPEED, ACCELERATION)
+		elif Input.is_action_pressed("ui_down"):
+			velocity.y = lerp(velocity.y, SPEED, ACCELERATION)
+		else:
+			velocity.y = lerp(velocity.y, 0, ACCELERATION)
+		if Input.is_action_pressed("ui_left"):
+			$body/Sprite.scale.x = -scal
+			velocity.x = lerp(velocity.x, -SPEED, ACCELERATION)
+		elif Input.is_action_pressed("ui_right"):
+			$body/Sprite.scale.x = scal
+			velocity.x = lerp(velocity.x, SPEED, ACCELERATION)
+		else:
+			velocity.x = lerp(velocity.x, 0, ACCELERATION)
+	elif StoredData.method == "touch":
+		if knob.move:
+			var angle = knob.angle
+			velocity = Vector2(cos(angle), sin(angle)) * -SPEED
+		else:
+			velocity.x = lerp(velocity.x, 0, ACCELERATION)
+			velocity.y = lerp(velocity.y, 0, ACCELERATION)
+		if velocity.x < 0:
+			$body/Sprite.scale.x = -scal
+		elif velocity.x > 0:
+			$body/Sprite.scale.x = scal
 	velocity = $body.move_and_slide(velocity, Vector2(0,-1))
 #Animations
 	if abs(velocity.x) > 70 or abs(velocity.y) > 70:
@@ -59,9 +83,13 @@ func _input(event):
 		if act_obj != null and act_obj.takeable:
 			act_obj._act()
 	if event.is_action_pressed("r"):
-		AudioServer.set_bus_mute(0,1)
-		$CanvasLayer/cover.visible = true
-		$CanvasLayer/Timer.start()
+		_reload()
+		
+
+func _reload():
+	AudioServer.set_bus_mute(0,1)
+	$CanvasLayer/cover.visible = true
+	$CanvasLayer/Timer.start()
 
 func _on_Timer_timeout():
 	get_tree().reload_current_scene()

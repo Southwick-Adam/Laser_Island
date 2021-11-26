@@ -4,6 +4,9 @@ export (PackedScene) var Boom
 
 func _process(delta):
 	position.y += 100 * delta
+	if $Area2D/Sprite.scale.x < 2:
+		$Area2D/Sprite.scale.x += 2 * delta
+		$Area2D/Sprite.scale.y += 2 * delta
 
 func _on_Area2D_body_entered(body):
 	if body == get_node("/root/main/world/clock"):

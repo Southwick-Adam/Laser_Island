@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/blast.png" type="Texture" id=1]
 [ext_resource path="res://scripts/cannon.gd" type="Script" id=2]
@@ -11,12 +11,45 @@
 [ext_resource path="res://assets/joint.png" type="Texture" id=9]
 [ext_resource path="res://audio/DeathFlash.mp3" type="AudioStream" id=10]
 [ext_resource path="res://assets/circle.png" type="Texture" id=11]
+[ext_resource path="res://assets/explosion.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2469, 10.6635 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11.1339, 17.2178 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "boom"
+length = 0.7
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("boom:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("boom:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
 
 [node name="cannon" type="Node2D"]
 script = ExtResource( 2 )
@@ -32,6 +65,7 @@ script = ExtResource( 4 )
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 0.278431 )
 position = Vector2( -0.121241, 98.5789 )
 scale = Vector2( 0.333448, 0.101791 )
+z_index = -1
 texture = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
@@ -56,12 +90,13 @@ texture = ExtResource( 1 )
 offset = Vector2( 0.279602, -30.5275 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D/Sprite/sprite"]
-position = Vector2( 0.624084, 0.403844 )
+position = Vector2( -3.30121, 0.0470047 )
 rotation = -1.5708
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2( -0.256859, 103.126 )
 shape = SubResource( 1 )
 
@@ -78,6 +113,7 @@ position = Vector2( 25.6053, 10.4288 )
 position = Vector2( -0.407997, -13.1374 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2( -0.138374, 6.36527 )
 shape = SubResource( 2 )
 
@@ -85,14 +121,32 @@ shape = SubResource( 2 )
 anims/burn = ExtResource( 7 )
 anims/go = ExtResource( 8 )
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=[
-"sound",
-]]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 25.6214, 6.10204 )
 stream = ExtResource( 10 )
 volume_db = 10.097
 pitch_scale = 0.94
 bus = "1"
 
-[connection signal="animation_finished" from="AnimationPlayer" to="StaticBody2D" method="_on_AnimationPlayer_animation_finished"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="." groups=[
+"touch",
+]]
+position = Vector2( 0.442604, -18.2298 )
+shape = SubResource( 3 )
+shape_centered = false
+
+[node name="boom" type="Sprite" parent="."]
+visible = false
+position = Vector2( 25.5607, 18.0364 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 4
+texture = ExtResource( 12 )
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/boom = SubResource( 4 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StaticBody2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

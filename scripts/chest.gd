@@ -17,3 +17,7 @@ func _act():
 
 func _process(_delta):
 	$StaticBody2D/Sprite2.self_modulate = $StaticBody2D/Sprite.self_modulate
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

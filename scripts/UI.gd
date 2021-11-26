@@ -78,3 +78,6 @@ func _music():
 	else:
 		$music/icon.texture = load("res://assets/icons/musicOff.png")
 		AudioServer.set_bus_mute(2,1)
+
+func _on_reload_pressed():
+	player._reload()

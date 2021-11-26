@@ -16,3 +16,6 @@ func _act():
 	takeable = false
 	hints._write("not much boom without a detonator")
 
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

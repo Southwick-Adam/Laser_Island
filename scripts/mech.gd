@@ -48,3 +48,8 @@ func _check():
 
 func _process(_delta):
 	$bits.modulate = $StaticBody2D/Sprite.self_modulate
+
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

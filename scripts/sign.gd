@@ -24,3 +24,7 @@ func _act():
 			dig = false
 		else:
 			hints._write("just an old rotten board and some nails")
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

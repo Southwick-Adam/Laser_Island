@@ -28,3 +28,7 @@ func _act():
 			phase.erase("c")
 		elif phase.has("t"):
 			hints._write("that turnip head looks kinda tasty though")
+
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

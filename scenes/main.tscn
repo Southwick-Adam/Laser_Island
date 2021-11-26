@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/world.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
@@ -21,26 +21,23 @@
 [ext_resource path="res://scenes/cannon.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/hints.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/grass.tscn" type="PackedScene" id=21]
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_strength = 1.24
-glow_hdr_threshold = 1.5
+[ext_resource path="res://scenes/knob.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scripts/main.gd" type="Script" id=23]
+[ext_resource path="res://scenes/WorldEn.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/start.tscn" type="PackedScene" id=25]
 
 [node name="main" type="Node2D"]
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
+WE = ExtResource( 24 )
 
 [node name="world" parent="." instance=ExtResource( 1 )]
 position = Vector2( -28.1253, 0.159156 )
 
 [node name="player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 590.489, 107.065 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+position = Vector2( 588.964, 95.576 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -48,6 +45,9 @@ environment = SubResource( 1 )
 
 [node name="hints" parent="UI" instance=ExtResource( 20 )]
 position = Vector2( 837.417, 467.75 )
+
+[node name="start" parent="UI" instance=ExtResource( 25 )]
+z_index = 30
 
 [node name="scarecrow" parent="." instance=ExtResource( 3 )]
 position = Vector2( 709.29, 136.912 )
@@ -62,13 +62,13 @@ position = Vector2( 661.041, 349.715 )
 position = Vector2( 513.157, 384.82 )
 
 [node name="sign" parent="." instance=ExtResource( 9 )]
-position = Vector2( 484.514, 501.193 )
+position = Vector2( 498.389, 501.468 )
 
 [node name="digs" type="Position2D" parent="."]
 position = Vector2( -25.3527, 6.33817 )
 
 [node name="dig" parent="digs" instance=ExtResource( 8 )]
-position = Vector2( 603.516, 498.191 )
+position = Vector2( 635.158, 499.69 )
 item = "cup"
 image = "res://assets/cup.png"
 hint = "an empty cup? isnt this just trash?"
@@ -80,7 +80,7 @@ image = "res://assets/key.png"
 hint = "a fancy key"
 
 [node name="cave_dig" parent="digs" instance=ExtResource( 16 )]
-position = Vector2( 419.955, 363.28 )
+position = Vector2( 410.552, 344.717 )
 
 [node name="rock" parent="." instance=ExtResource( 10 )]
 position = Vector2( 293, 116 )
@@ -89,7 +89,7 @@ position = Vector2( 293, 116 )
 position = Vector2( 263.22, 299.915 )
 
 [node name="blender" parent="." instance=ExtResource( 12 )]
-position = Vector2( 287.128, 466.164 )
+position = Vector2( 315.614, 487.292 )
 
 [node name="detector" parent="." instance=ExtResource( 13 )]
 position = Vector2( 291.577, 59.7158 )
@@ -117,3 +117,6 @@ z_index = -1
 [node name="grass2" parent="." instance=ExtResource( 21 )]
 position = Vector2( 228.772, 194.422 )
 z_index = -1
+
+[node name="knob" parent="." instance=ExtResource( 22 )]
+position = Vector2( 129.933, 478.085 )

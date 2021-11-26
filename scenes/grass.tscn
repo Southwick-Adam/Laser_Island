@@ -39,6 +39,7 @@ shape = SubResource( 1 )
 self_modulate = Color( 0.129412, 0.129412, 0.129412, 0.278431 )
 position = Vector2( -0.238944, 7.91053 )
 scale = Vector2( 0.383166, 0.1 )
+z_index = -1
 texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Area2D"]

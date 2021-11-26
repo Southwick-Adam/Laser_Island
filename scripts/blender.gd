@@ -23,3 +23,6 @@ func _act():
 			takeable = false
 			hints._write("Looks refreshing!")
 
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()

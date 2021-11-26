@@ -16,3 +16,6 @@ func _act():
 	$StaticBody2D/Sprite2.z_index = -1
 	takeable = false
 
+func _on_TouchScreenButton_pressed():
+	if player.act_obj == self and takeable:
+		_act()
