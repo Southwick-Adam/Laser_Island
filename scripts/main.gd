@@ -10,7 +10,7 @@ func _ready():
 		_key()
 		
 func _key():
-	$knob.queue_free()
+	$UI/knob.queue_free()
 	for node in get_tree().get_nodes_in_group("touch"):
 		node.queue_free()
 	var node = WE.instance()

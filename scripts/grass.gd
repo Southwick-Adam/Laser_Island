@@ -1,8 +1,17 @@
-extends Area2D
+extends Node2D
+
+onready var player = get_node("/root/main/player")
 
 func _death():
-	get_parent().get_node("AnimationPlayer").play("burn")
+	$AnimationPlayer.play("burn")
 
 func _on_AnimationPlayer_animation_finished(anim):
 	if anim == ("burn"):
-		get_parent().queue_free()
+		queue_free()
+
+func _process(_delta):
+	var player_z_dif = player.get_child(0).global_position.y - global_position.y
+	if player_z_dif >= -10:
+		z_index = 3
+	elif player_z_dif < -10:
+		z_index = 7

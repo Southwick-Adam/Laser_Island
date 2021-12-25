@@ -13,9 +13,10 @@ func _ready():
 
 func _change_item(num, image):
 	$slots.get_child(num).get_child(1).texture = load(image)
+	$slots.get_child(num).get_child(1).visible = true
 
 func _erase_item(num):
-	$slots.get_child(num).get_child(1).texture = null
+	$slots.get_child(num).get_child(1).visible = false
 	_equip(-1)
 
 func _equip(num):
